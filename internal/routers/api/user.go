@@ -1,11 +1,10 @@
 package api
 
 import (
-	"github.com/Stance0102/gin-api/pkg/errors"
+	"gin-api/internal/pkg/app"
+	"gin-api/internal/pkg/errors"
+	"gin-api/internal/requests"
 
-	"github.com/Stance0102/gin-api/internal/pkg/app"
-	"github.com/Stance0102/gin-api/internal/requests"
-	"github.com/Stance0102/gin-api/pkg/app"
 	"github.com/gin-gonic/gin"
 )
 
@@ -17,7 +16,7 @@ func NewUser() User {
 
 func (u User) Register(c *gin.Context) {
 	params := requests.RegisterUserRequest{}
-	response := app.NewError(c)
+	response := app.NewResponse(c)
 	valid, err := app.BindAndValidation(c, &params)
 
 	if !valid {
@@ -27,7 +26,7 @@ func (u User) Register(c *gin.Context) {
 		return
 	}
 
-	response.MakeErrorResponse(params)
+	response.MakeResponse(params)
 }
 
 func (u User) Login(c *gin.Context) {

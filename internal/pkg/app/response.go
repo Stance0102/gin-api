@@ -3,13 +3,17 @@ package app
 import (
 	"net/http"
 
-	"github.com/Stance0102/gin-api/pkg/errors"
+	"gin-api/internal/pkg/errors"
 
 	"github.com/gin-gonic/gin"
 )
 
 type Response struct {
 	Ctx *gin.Context
+}
+
+func NewResponse(ctx *gin.Context) *Response {
+	return &Response{Ctx: ctx}
 }
 
 func (r *Response) MakeResponse(data interface{}) {

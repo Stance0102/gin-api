@@ -1,12 +1,15 @@
 package routers
 
 import (
-	"github.com/Stance0102/gin-api/internal/routers/api"
+	"gin-api/internal/middleware"
+	"gin-api/internal/routers/api"
+
 	"github.com/gin-gonic/gin"
 )
 
 func NewRouter() *gin.Engine {
 	router := gin.New()
+	router.Use(middleware.Translations())
 	hello := api.NewHello()
 	user := api.NewUser()
 
