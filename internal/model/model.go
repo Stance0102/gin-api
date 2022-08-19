@@ -4,21 +4,22 @@ import (
 	"fmt"
 	"gin-api/internal/pkg/setting"
 
-	"gorm.io/driver/mysql"
+	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
 
 func NewDBEngine(databaseSetting *setting.DatabaseSetting) (*gorm.DB, error) {
-	dsn := fmt.Sprintf("%s:%s@tcp(%s)/%s?charset=%s&parseTime=%t&loc=Local",
-		databaseSetting.UserName,
-		databaseSetting.Password,
+	dsn := fmt.Sprintf("host=%s user=gorm password=gorm dbname=%s port=%s sslmode=disable TimeZone=Asia/Shanghai",
+		// databaseSetting.UserName,
+		// databaseSetting.Password,
 		databaseSetting.Host,
 		databaseSetting.DBName,
-		databaseSetting.Charset,
-		databaseSetting.ParseTime,
+		databaseSetting.Port,
+		// databaseSetting.Charset,
+		// databaseSetting.ParseTime,
 	)
 
-	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
+	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 
 	if err != nil {
 		return nil, err

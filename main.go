@@ -27,7 +27,7 @@ func init() {
 
 func setupDBEngine() error {
 	var err error
-	global.DBEnging, err = model.NewDBEngine(global.DatabaseSetting)
+	global.DBEngine, err = model.NewDBEngine(global.DatabaseSetting)
 
 	return err
 }
@@ -40,13 +40,11 @@ func setupSetting() error {
 	}
 
 	err = setting.ReadSection("Server", &global.ServerSetting)
-
 	if err != nil {
 		return err
 	}
 
 	err = setting.ReadSection("Database", &global.DatabaseSetting)
-
 	if err != nil {
 		return err
 	}

@@ -1,13 +1,14 @@
-	Server:
+Server:
   RunMode: debug
   HttpPort: 80
   ReadTimeout: 60
   WriteTimeout: 60
 Database:
-  DBType: mysql
+  DBType: postgres
   UserName: root
   Password:
-  Host: 127.0.0.1:3306
+  Host: 127.0.0.1
+  Port: 5432
   DBName: gin_api_db
   Charset: utf8
   ParseTime: True
